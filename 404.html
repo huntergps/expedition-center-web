@@ -17,6 +17,15 @@
   <base href="/">
 
   <meta charset="UTF-8">
+  <!--
+    CSP (revisión de seguridad 2, H12). GitHub Pages no deja poner cabeceras,
+    así que va por meta (frame-ancestors no vale aquí). Solo el propio origen,
+    el proyecto de Supabase (REST, Auth, Storage y Realtime) y lo que Flutter
+    web baja de Google: CanvasKit de www.gstatic.com y las fuentes de respaldo
+    de fonts.gstatic.com. 'wasm-unsafe-eval': CanvasKit y sqlite3.wasm (Drift).
+    blob: en worker-src: el worker de Drift y el de skwasm.
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://www.gstatic.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.gstatic.com https://fonts.gstatic.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="A new Flutter project.">
 
